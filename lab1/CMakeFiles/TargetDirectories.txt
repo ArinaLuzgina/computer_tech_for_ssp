@@ -1,0 +1,7 @@
+/home/arinal/Desktop/phystech/4_semester/prog/miniscience-4th-term/2025/01_meshes/cpp/CMakeFiles/sample01.dir
+/home/arinal/Desktop/phystech/4_semester/prog/miniscience-4th-term/2025/01_meshes/cpp/CMakeFiles/sample02.dir
+/home/arinal/Desktop/phystech/4_semester/prog/miniscience-4th-term/2025/01_meshes/cpp/CMakeFiles/sample03.dir
+/home/arinal/Desktop/phystech/4_semester/prog/miniscience-4th-term/2025/01_meshes/cpp/CMakeFiles/sample04.dir
+/home/arinal/Desktop/phystech/4_semester/prog/miniscience-4th-term/2025/01_meshes/cpp/CMakeFiles/sample02_cube.dir
+/home/arinal/Desktop/phystech/4_semester/prog/miniscience-4th-term/2025/01_meshes/cpp/CMakeFiles/edit_cache.dir
+/home/arinal/Desktop/phystech/4_semester/prog/miniscience-4th-term/2025/01_meshes/cpp/CMakeFiles/rebuild_cache.dir

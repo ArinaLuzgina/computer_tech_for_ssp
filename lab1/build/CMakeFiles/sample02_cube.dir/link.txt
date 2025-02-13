@@ -1,0 +1,1 @@
+/usr/bin/c++ -std=c++11 -g CMakeFiles/sample02_cube.dir/sample02_cube.cpp.o -o sample02_cube  /usr/lib/x86_64-linux-gnu/libgmsh.so 

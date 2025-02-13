@@ -1,0 +1,7 @@
+/home/arinal/Desktop/phystech/4_semester/prog/computer_tech_for_ssp/lab1/build/CMakeFiles/cube.dir
+/home/arinal/Desktop/phystech/4_semester/prog/computer_tech_for_ssp/lab1/build/CMakeFiles/circle.dir
+/home/arinal/Desktop/phystech/4_semester/prog/computer_tech_for_ssp/lab1/build/CMakeFiles/cylynder.dir
+/home/arinal/Desktop/phystech/4_semester/prog/computer_tech_for_ssp/lab1/build/CMakeFiles/tokamaka.dir
+/home/arinal/Desktop/phystech/4_semester/prog/computer_tech_for_ssp/lab1/build/CMakeFiles/model.dir
+/home/arinal/Desktop/phystech/4_semester/prog/computer_tech_for_ssp/lab1/build/CMakeFiles/edit_cache.dir
+/home/arinal/Desktop/phystech/4_semester/prog/computer_tech_for_ssp/lab1/build/CMakeFiles/rebuild_cache.dir
