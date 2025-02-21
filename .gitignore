@@ -1,7 +1,7 @@
-./lab1/build/CMakeCache.txt
-./lab1/build/CMakeFiles/*
-./lab2/build/CMakeCache.txt
-./lab2/build/CMakeFiles/*
-./lab2/build/output/make_net/*
-./lab2/build/output/some_physics/*
+lab1/build/CMakeCache.txt
+lab1/build/CMakeFiles/
+lab2/build/CMakeCache.txt
+lab2/build/CMakeFiles/
+lab2/build/output/make_net/*.vtu
+lab2/build/output/some_physics/*.vtu
 

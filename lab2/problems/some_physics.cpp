@@ -54,6 +54,7 @@ public:
         vy = rad * sin(time / 180 * M_PI + phi);
         x = rad * cos(time / 180 * M_PI + phi);
         y = rad * sin(time / 180 * M_PI + phi);
+        smth = exp(-(x + y + 1));
         //z += vz * tau;
     }
 };
@@ -97,7 +98,7 @@ public:
                 phi = atan(pointY / pointX);
             }
             // Модельная скалярная величина распределена как-то вот так
-            double smth = exp(-1 * (pointX * pointX / 3 + pointY * pointY / 5 + pointZ * pointZ / 7) / 2);
+            double smth = exp(-1 * (pointX * pointX * 10 + pointY * pointY / 5 + pointZ * pointZ / 7) / 2);
             nodes[i] = CalcNode(pointX, pointY, pointZ, smth, rad, phi);
         }
 
