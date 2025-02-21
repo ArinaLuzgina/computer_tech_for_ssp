@@ -1,0 +1,4 @@
+/home/arinal/Desktop/phystech/4_semester/prog/computer_tech_for_ssp/lab2/build/CMakeFiles/make_net.dir
+/home/arinal/Desktop/phystech/4_semester/prog/computer_tech_for_ssp/lab2/build/CMakeFiles/some_physics.dir
+/home/arinal/Desktop/phystech/4_semester/prog/computer_tech_for_ssp/lab2/build/CMakeFiles/edit_cache.dir
+/home/arinal/Desktop/phystech/4_semester/prog/computer_tech_for_ssp/lab2/build/CMakeFiles/rebuild_cache.dir
