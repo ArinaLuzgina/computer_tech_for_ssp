@@ -54,7 +54,7 @@ public:
         vy = rad * sin(time / 180 * M_PI + phi);
         x = rad * cos(time / 180 * M_PI + phi);
         y = rad * sin(time / 180 * M_PI + phi);
-        smth = exp(-(x + y + 1));
+        smth = exp(x + y);
         //z += vz * tau;
     }
 };
