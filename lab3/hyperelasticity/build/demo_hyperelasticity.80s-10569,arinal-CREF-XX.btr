@@ -1,0 +1,15 @@
+
+demo_hyperelasticity:10569 terminated with signal 6 at PC=7f3c4d1fc9fc SP=7fff08ef37d0.  Backtrace:
+/lib/x86_64-linux-gnu/libc.so.6(pthread_kill+0x12c)[0x7f3c4d1fc9fc]
+/lib/x86_64-linux-gnu/libc.so.6(raise+0x16)[0x7f3c4d1a8476]
+/lib/x86_64-linux-gnu/libc.so.6(abort+0xd3)[0x7f3c4d18e7f3]
+/lib/x86_64-linux-gnu/libstdc++.so.6(+0xa2b9e)[0x7f3c4d538b9e]
+/lib/x86_64-linux-gnu/libstdc++.so.6(+0xae20c)[0x7f3c4d54420c]
+/lib/x86_64-linux-gnu/libstdc++.so.6(+0xae277)[0x7f3c4d544277]
+/lib/x86_64-linux-gnu/libstdc++.so.6(+0xae4d8)[0x7f3c4d5444d8]
+./demo_hyperelasticity(+0x49f59)[0x5556c0e13f59]
+./demo_hyperelasticity(+0x392c1)[0x5556c0e032c1]
+./demo_hyperelasticity(+0x24489)[0x5556c0dee489]
+/lib/x86_64-linux-gnu/libc.so.6(+0x29d90)[0x7f3c4d18fd90]
+/lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0x80)[0x7f3c4d18fe40]
+./demo_hyperelasticity(+0x22d45)[0x5556c0decd45]

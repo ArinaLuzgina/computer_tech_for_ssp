@@ -42,8 +42,8 @@ static const double FE1_C1_D010_Q421[1][1][1][4] = {{{{-1.0, 0.0, 1.0, 0.0}}}};
 static const double FE1_C2_D001_Q421[1][1][1][4] = {{{{-1.0, 0.0, 0.0, 1.0}}}};
 // ------------------------ 
 // Section: Coefficient
-// Inputs: FE1_C2_D001_Q421, FE1_C0_D100_Q421, w, FE1_C1_D010_Q421
-// Outputs: w0_d001_c2, w0_d100_c0, w0_d100_c1, w0_d010_c1, w0_d010_c2, w0_d001_c0, w0_d001_c1, w0_d010_c0, w0_d100_c2
+// Inputs: FE1_C1_D010_Q421, w, FE1_C0_D100_Q421, FE1_C2_D001_Q421
+// Outputs: w0_d100_c2, w0_d001_c2, w0_d010_c2, w0_d001_c1, w0_d001_c0, w0_d010_c1, w0_d010_c0, w0_d100_c1, w0_d100_c0
 double w0_d100_c0 = 0.0;
 double w0_d010_c0 = 0.0;
 double w0_d001_c0 = 0.0;
@@ -70,8 +70,8 @@ double w0_d001_c2 = 0.0;
 // ------------------------ 
 // ------------------------ 
 // Section: Jacobian
-// Inputs: FE1_C2_D001_Q421, FE1_C0_D100_Q421, FE1_C1_D010_Q421, coordinate_dofs
-// Outputs: J_c6, J_c5, J_c8, J_c0, J_c2, J_c1, J_c4, J_c7, J_c3
+// Inputs: FE1_C1_D010_Q421, FE1_C2_D001_Q421, coordinate_dofs, FE1_C0_D100_Q421
+// Outputs: J_c3, J_c2, J_c8, J_c4, J_c5, J_c0, J_c1, J_c6, J_c7
 double J_c4 = 0.0;
 double J_c8 = 0.0;
 double J_c5 = 0.0;
@@ -540,7 +540,7 @@ for (int iq = 0; iq < 1; ++iq)
   // ------------------------ 
   // ------------------------ 
   // Section: Tensor Computation
-  // Inputs: FE1_C0_Q421, FE1_C0_D100_Q421, fw2, FE1_C1_D010_Q421, fw7, FE1_C2_D001_Q421, fw0, fw5, fw11, fw9, fw3, fw8, fw10, fw4, fw1, fw6
+  // Inputs: fw6, fw4, fw1, fw8, fw10, fw11, FE1_C1_D010_Q421, FE1_C0_D100_Q421, fw9, fw3, FE1_C2_D001_Q421, fw7, fw0, fw2, FE1_C0_Q421, fw5
   // Outputs: A
   {
     for (int i = 0; i < 4; ++i)
@@ -613,8 +613,8 @@ static const double tetrahedron_reference_facet_jacobian[4][3][2] = {{{-1.0, -1.
   {0.0, 0.0}}};
 // ------------------------ 
 // Section: Jacobian
-// Inputs: FE1_C1_D100_F_Q083, FE1_C1_D010_F_Q083, FE1_C1_D001_F_Q083, coordinate_dofs
-// Outputs: J_c6, J_c5, J_c8, J_c0, J_c2, J_c1, J_c4, J_c7, J_c3
+// Inputs: FE1_C1_D001_F_Q083, coordinate_dofs, FE1_C1_D100_F_Q083, FE1_C1_D010_F_Q083
+// Outputs: J_c3, J_c2, J_c8, J_c4, J_c5, J_c0, J_c1, J_c6, J_c7
 double J_c3 = 0.0;
 double J_c4 = 0.0;
 double J_c5 = 0.0;
@@ -710,7 +710,7 @@ for (int iq = 0; iq < 1; ++iq)
   // ------------------------ 
   // ------------------------ 
   // Section: Tensor Computation
-  // Inputs: fw2, fw0, fw1, FE1_C0_F_Q083
+  // Inputs: fw1, FE1_C0_F_Q083, fw0, fw2
   // Outputs: A
   {
     for (int i = 0; i < 4; ++i)
@@ -758,8 +758,8 @@ static const double FE1_C1_D010_Q421[1][1][1][4] = {{{{-1.0, 0.0, 1.0, 0.0}}}};
 static const double FE1_C2_D001_Q421[1][1][1][4] = {{{{-1.0, 0.0, 0.0, 1.0}}}};
 // ------------------------ 
 // Section: Jacobian
-// Inputs: FE1_C2_D001_Q421, FE1_C0_D100_Q421, FE1_C1_D010_Q421, coordinate_dofs
-// Outputs: J_c6, J_c5, J_c8, J_c0, J_c2, J_c1, J_c4, J_c7, J_c3
+// Inputs: FE1_C1_D010_Q421, FE1_C2_D001_Q421, coordinate_dofs, FE1_C0_D100_Q421
+// Outputs: J_c3, J_c2, J_c8, J_c4, J_c5, J_c0, J_c1, J_c6, J_c7
 double J_c4 = 0.0;
 double J_c8 = 0.0;
 double J_c5 = 0.0;
@@ -786,8 +786,8 @@ double J_c2 = 0.0;
 // ------------------------ 
 // ------------------------ 
 // Section: Coefficient
-// Inputs: FE1_C2_D001_Q421, FE1_C0_D100_Q421, w, FE1_C1_D010_Q421
-// Outputs: w0_d001_c2, w0_d100_c0, w0_d100_c1, w0_d010_c1, w0_d010_c2, w0_d001_c0, w0_d001_c1, w0_d010_c0, w0_d100_c2
+// Inputs: FE1_C1_D010_Q421, w, FE1_C0_D100_Q421, FE1_C2_D001_Q421
+// Outputs: w0_d100_c2, w0_d001_c2, w0_d010_c2, w0_d001_c1, w0_d001_c0, w0_d010_c1, w0_d010_c0, w0_d100_c1, w0_d100_c0
 double w0_d100_c0 = 0.0;
 double w0_d010_c0 = 0.0;
 double w0_d001_c0 = 0.0;
@@ -2567,7 +2567,7 @@ for (int iq = 0; iq < 1; ++iq)
   // ------------------------ 
   // ------------------------ 
   // Section: Tensor Computation
-  // Inputs: fw21, fw58, fw26, fw68, fw50, fw17, fw18, fw41, fw39, fw12, fw73, fw13, fw10, fw31, fw49, fw42, fw48, FE1_C2_D001_Q421, fw28, fw4, fw16, fw35, fw76, fw23, fw32, fw54, fw56, fw24, fw3, fw59, fw40, FE1_C0_D100_Q421, fw37, fw53, fw25, fw44, fw57, fw8, fw51, fw15, fw5, fw77, fw34, fw64, fw69, fw29, fw27, fw9, fw38, fw45, fw7, fw55, fw62, FE1_C1_D010_Q421, fw20, fw67, fw46, fw22, fw60, fw65, fw2, fw19, fw66, fw78, fw47, fw71, fw6, fw80, fw1, fw75, fw14, fw74, fw61, fw0, fw30, fw63, fw11, fw43, fw70, fw36, fw72, fw79, fw52, fw33
+  // Inputs: fw59, fw70, fw63, fw48, fw76, fw27, fw54, fw12, fw43, fw73, fw8, fw75, fw35, fw45, fw41, fw2, fw23, fw18, fw34, fw21, fw4, fw38, fw68, fw72, fw44, fw40, fw5, fw29, fw25, fw46, fw56, FE1_C1_D010_Q421, fw39, fw22, fw32, fw19, fw53, fw71, fw69, fw10, fw55, fw57, fw20, fw1, fw60, fw78, fw3, fw74, fw67, fw77, fw30, fw15, fw52, fw47, fw62, fw0, fw64, fw26, fw33, fw37, fw66, fw80, fw14, FE1_C2_D001_Q421, fw7, fw58, fw79, fw17, fw24, fw11, fw13, FE1_C0_D100_Q421, fw9, fw49, fw16, fw61, fw6, fw65, fw51, fw28, fw42, fw31, fw50, fw36
   // Outputs: A
   {
     double temp_0[4] = {0};
