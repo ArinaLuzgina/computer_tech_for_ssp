@@ -1,0 +1,15 @@
+
+demo_hyperelasticity:16874 terminated with signal 6 at PC=7f14136c59fc SP=7ffdcef09820.  Backtrace:
+/lib/x86_64-linux-gnu/libc.so.6(pthread_kill+0x12c)[0x7f14136c59fc]
+/lib/x86_64-linux-gnu/libc.so.6(raise+0x16)[0x7f1413671476]
+/lib/x86_64-linux-gnu/libc.so.6(abort+0xd3)[0x7f14136577f3]
+/lib/x86_64-linux-gnu/libstdc++.so.6(+0xa2b9e)[0x7f1413a01b9e]
+/lib/x86_64-linux-gnu/libstdc++.so.6(+0xae20c)[0x7f1413a0d20c]
+/lib/x86_64-linux-gnu/libstdc++.so.6(+0xae277)[0x7f1413a0d277]
+/lib/x86_64-linux-gnu/libstdc++.so.6(+0xae4d8)[0x7f1413a0d4d8]
+/lib/x86_64-linux-gnu/libdolfinx_real.so.0.9(+0x4aaa7)[0x7f1415258aa7]
+/lib/x86_64-linux-gnu/libdolfinx_real.so.0.9(_ZN7dolfinx2io8XDMFFileC1EP19ompi_communicator_tRKNSt10filesystem7__cxx114pathENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEENS1_8EncodingE+0x552)[0x7f14152ed302]
+./demo_hyperelasticity(+0x1bb22)[0x55be45b2cb22]
+/lib/x86_64-linux-gnu/libc.so.6(+0x29d90)[0x7f1413658d90]
+/lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0x80)[0x7f1413658e40]
+./demo_hyperelasticity(+0x1b8a5)[0x55be45b2c8a5]

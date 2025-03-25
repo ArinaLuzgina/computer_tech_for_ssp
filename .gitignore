@@ -8,3 +8,5 @@ lab2/build/output/some_physics/
 lab3/hyperelasticity/build/CMakeCache.txt
 lab3/hyperelasticity/build/CMakeFiles/
 
+microproject/build/*
+

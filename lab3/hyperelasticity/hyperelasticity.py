@@ -26,7 +26,7 @@ from ufl import (
 )
 
 # Function spaces
-e = element("Lagrange", "tetrahedron", 1, shape=(3,))
+e = element("Lagrange", "tetrahedron", 3, shape=(3,))
 mesh = Mesh(e)
 V = FunctionSpace(mesh, e)
 
@@ -62,7 +62,7 @@ J = det(F)
 # parameters:
 
 # Elasticity parameters
-E = 10.0
+E = 1e1
 nu = 0.3
 mu = E / (2 * (1 + nu))
 lmbda = E * nu / ((1 + nu) * (1 - 2 * nu))

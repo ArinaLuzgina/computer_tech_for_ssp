@@ -156,10 +156,20 @@ int main(int argc, char* argv[])
     // function space defined by the generated code.
 
     // Create mesh and define function space
-    auto mesh = std::make_shared<mesh::Mesh<U>>(mesh::create_box<U>(
-        MPI_COMM_WORLD, {{{0.0, 0.0, 0.0}, {2.0, 1.0, 1.0}}}, {20, 10, 10},
-        mesh::CellType::tetrahedron,
-        mesh::create_cell_partitioner(mesh::GhostMode::none)));
+    // auto mesh = std::make_shared<mesh::Mesh<U>>(mesh::create_box<U>(
+    //     MPI_COMM_WORLD, {{{0.0, 0.0, 0.0}, {2.0, 1.0, 1.0}}}, {10, 10, 10},
+    //     mesh::CellType::tetrahedron,
+    //     mesh::create_cell_partitioner(mesh::GhostMode::none)));
+
+    dolfinx::io::XDMFFile xdmf_file(MPI_COMM_WORLD, "cup2.xdmf", "r");
+    dolfinx::fem::CoordinateElement<double> coordinate_element(
+        dolfinx::mesh::CellType::tetrahedron,
+        1,
+        basix::element::lagrange_variant::unset
+    );
+    auto mesh = std::make_shared<mesh::Mesh<U>>(xdmf_file.read_mesh(coordinate_element,
+                                    dolfinx::mesh::GhostMode::none,
+                                    "Grid"));
 
     auto element = basix::create_element<U>(
         basix::element::family::P, basix::cell::type::tetrahedron, 1,
@@ -185,14 +195,14 @@ int main(int argc, char* argv[])
     u_rotation->interpolate(
         [](auto x) -> std::pair<std::vector<T>, std::vector<std::size_t>>
         {
-          constexpr U scale = 0.005;
+          constexpr U scale = 1e-8;//0.005;
 
           // Center of rotation
-          constexpr U x1_c = 0.0;
+          constexpr U x1_c = 1.0;
           constexpr U x2_c = 0.0;
 
           // Large angle of rotation (60 degrees)
-          constexpr U theta = 1.04719755;
+          constexpr U theta = 0.1;//1.04719755;
 
           // New coordinates
           std::vector<U> fdata(3 * x.extent(1), 0.0);
@@ -204,12 +214,12 @@ int main(int argc, char* argv[])
           for (std::size_t p = 0; p < x.extent(1); ++p)
           {
             U x1 = x(1, p);
-            U x2 = x(0.5, p);
+            U x2 = x(2, p);
             f(1, p) = scale
-                      * (x1_c + (x1 - x1_c * 2) * std::cos(theta)
+                      * (x1_c + (x1 - x1_c) * std::cos(theta)
                          - (x2 - x2_c) * std::sin(theta) - x1);
-            f(0.5, p) = scale
-                      * (x2_c + (x1 - x1_c * 2) * std::sin(theta)
+            f(2, p) = scale
+                      * (x2_c + (x1 - x1_c) * std::sin(theta)
                          - (x2 - x2_c) * std::cos(theta) - x2);
           }
 

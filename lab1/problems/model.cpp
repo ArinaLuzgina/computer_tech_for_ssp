@@ -19,7 +19,7 @@ int main(int argc, char **argv)
   // Let's merge an STL mesh that we would like to remesh (from the parent
   // directory):
   try {
-    gmsh::merge("../models/Mug_Cauldron.stl");
+    gmsh::merge("../models/cup2.stl");
   } catch(...) {
     gmsh::logger::write("Could not load STL mesh: bye!");
     gmsh::finalize();
@@ -74,7 +74,7 @@ int main(int argc, char **argv)
 
   gmsh::model::mesh::generate(3);
 
-  gmsh::write("./../models/model_meshed.msh");
+  gmsh::write("./../models/cup2.msh");
 
   // Launch the GUI to see the results:
   std::set<std::string> args(argv, argv + argc);
