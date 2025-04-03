@@ -8,7 +8,9 @@
 #include <vtkXMLStructuredGridWriter.h>
 #include <vtkStructuredGrid.h>
 #include <vtkSmartPointer.h>
+
 #include <thread>
+
 using namespace std;
 
 // Класс расчётной точки
@@ -18,11 +20,14 @@ class CalcNode
 friend class CalcMesh;
 
 protected:
+    // Координаты
     double x;
     double y;
     double z;
+    // Некая величина, в попугаях
     double intensity;
     double image;
+    // Скорость
 
 public:
     // Конструктор по умолчанию
@@ -43,7 +48,7 @@ class CalcMesh
 protected:
     // 2D-сетка из расчётных точек
     vector<vector<CalcNode>> points;
-    double R_0 = 850;
+    double R_0 = 0;
     double I = 1.0;
     double lamb = 555 * 1e-9;
     double k = 2 * M_PI / lamb;
@@ -56,14 +61,13 @@ protected:
     double y_st;
     double y_end;
     unsigned int number_of_points = 100;
-    double sum_intensity = 0;
+
 
 public:
     // Конструктор сетки size x size точек с шагом h по пространству
     CalcMesh(unsigned int size, double h) {
         calculate_mesh(size, h);
         calculate_mesh_intensity(size, h);
-        calculate_mesh_image(size, h);
     }
     void calculate_mesh(unsigned int size, double h){
         points.resize(size);
@@ -87,11 +91,6 @@ public:
         y_st = centerY - lenght * h/ 2;
         x_end = centerX + width * h/ 2;
         y_end = centerY + lenght * h/ 2;
-        double intens1 = 0;
-        double intens2 = 0;
-        double intens3 = 0;
-        double intens4 = 0;
-        double intens5 = 0;
 
         std::thread t1([&](){
             for(unsigned int i = 0; i < size / 5; i++) {
@@ -99,9 +98,10 @@ public:
                 for(unsigned int j = 0; j < size; j++) {
                     double pointX = i * h;
                     double pointY = j * h;
-                    double intensity = calculate_intensity_1d(pointX - centerX, pointY);
+                    double intensity = calculate_intensity_1d(pointX, pointY);
+                    double image = calculate_image(pointX, pointY, intensity);
                     points[i][j].intensity = intensity;
-                    intens1 += intensity;
+                    points[i][j].image = image;
                 }
             }
         });
@@ -111,9 +111,10 @@ public:
                 for(unsigned int j = 0; j < size; j++) {
                     double pointX = i * h;
                     double pointY = j * h;
-                    double intensity = calculate_intensity_1d(pointX - centerX, pointY);
+                    double intensity = calculate_intensity_1d(pointX, pointY);
+                    double image = calculate_image(pointX, pointY, intensity);
                     points[i][j].intensity = intensity;
-                    intens2 += intensity;
+                    points[i][j].image = image;
                 }
             }
         });
@@ -123,9 +124,10 @@ public:
                 for(unsigned int j = 0; j < size; j++) {
                     double pointX = i * h;
                     double pointY = j * h;
-                    double intensity = calculate_intensity_1d(pointX - centerX, pointY);
+                    double intensity = calculate_intensity_1d(pointX, pointY);
+                    double image = calculate_image(pointX, pointY, intensity);
                     points[i][j].intensity = intensity;
-                    intens3 += intensity;
+                    points[i][j].image = image;
                 }
             }
         });
@@ -135,9 +137,10 @@ public:
                 for(unsigned int j = 0; j < size; j++) {
                     double pointX = i * h;
                     double pointY = j * h;
-                    double intensity = calculate_intensity_1d(pointX - centerX, pointY);
+                    double intensity = calculate_intensity_1d(pointX, pointY);
+                    double image = calculate_image(pointX, pointY, intensity);
                     points[i][j].intensity = intensity;
-                    intens4 += intensity;
+                    points[i][j].image = image;
                 }
             }
         });
@@ -147,9 +150,10 @@ public:
                 for(unsigned int j = 0; j < size; j++) {
                     double pointX = i * h;
                     double pointY = j * h;
-                    double intensity = calculate_intensity_1d(pointX - centerX, pointY);
+                    double intensity = calculate_intensity_1d(pointX, pointY);
+                    double image = calculate_image(pointX, pointY, intensity);
                     points[i][j].intensity = intensity;
-                    intens5 += intensity;
+                    points[i][j].image = image;
                 }
             }
         });
@@ -158,64 +162,8 @@ public:
         t3.join();
         t4.join();
         t5.join();
-        sum_intensity += intens1;
-        sum_intensity += intens2;
-        sum_intensity += intens3;
-        sum_intensity += intens4;
-        sum_intensity += intens5;
 
     }
-
-    void calculate_mesh_image(unsigned int size, double h){
-        points.resize(size);
-        std::thread t1([&](){
-            for(unsigned int i = 0; i < size / 5; i++) {
-                points[i].resize(size);
-                for(unsigned int j = 0; j < size; j++) {
-                    points[i][j].image = calculate_image(points[i][j].intensity);
-                }
-            }
-        });
-        std::thread t2([&](){
-            for(unsigned int i = size / 5; i < size / 5 * 2; i++) {
-                points[i].resize(size);
-                for(unsigned int j = 0; j < size; j++) {
-                    points[i][j].image = calculate_image(points[i][j].intensity);
-                }
-            }
-        });
-        std::thread t3([&](){
-            for(unsigned int i = size / 5 * 2; i < size / 5 * 3; i++) {
-                points[i].resize(size);
-                for(unsigned int j = 0; j < size; j++) {
-                    points[i][j].image = calculate_image(points[i][j].intensity);
-                }
-            }
-        });
-        std::thread t4([&](){
-            for(unsigned int i = size / 5 * 3; i < size / 5 * 4; i++) {
-                points[i].resize(size);
-                for(unsigned int j = 0; j < size; j++) {
-                    points[i][j].image = calculate_image(points[i][j].intensity);
-                }
-            }
-        });
-        std::thread t5([&](){
-            for(unsigned int i = size / 5 * 4; i < size; i++) {
-                points[i].resize(size);
-                for(unsigned int j = 0; j < size; j++) {
-                    points[i][j].image = calculate_image(points[i][j].intensity);
-                }
-            }
-        });
-        t1.join();
-        t2.join();
-        t3.join();
-        t4.join();
-        t5.join();
-    }
-
-
     // Метод отвечает за запись текущего состояния сетки в снапшот в формате VTK
     void snapshot(unsigned int snap_number) {
         // Сетка в терминах VTK
@@ -252,33 +200,33 @@ public:
         structuredGrid->GetPointData()->AddArray(image);
 
         // Создаём снапшот в файле с заданным именем
-        string fileName = "./output/1d_emitter.vts";
+        //string fileName = "./output/1d_emitter.vts";
+        string fileName = "./output/1d_find_precise/step-" + std::to_string(snap_number) + ".vts";
         vtkSmartPointer<vtkXMLStructuredGridWriter> writer = vtkSmartPointer<vtkXMLStructuredGridWriter>::New();
         writer->SetFileName(fileName.c_str());
         writer->SetInputData(structuredGrid);
         writer->Write();
     }
-
-    double calculate_angle(double x, double y, double x_from, double y_from){
-        double r = sqrt(pow((x - x_from), 2) + pow((y - y_from), 2));
-        double psi = atan(r / R_0);
-        return psi;
-    }
     double calculate_intensity_1d(double x, double y){
         double I_res = 0.0;
         for(double i=y_st; i < y_end; i += (y_end - y_st) / number_of_points){
-            //for(double j=x_st; j < x_end; j += (x_end - x_st) / number_of_points){
             double r_sq = pow( x, 2) + pow(i - y, 2);
             double delta = sqrt(r_sq + pow(R_0, 2)) - R_0 / cos_alpha;
             I_res += 2 * I * (1 + cos(k * delta));
         
     }
-        //std::cout << I_res << std::endl;
         return I_res;
     }
-    double calculate_image(double intensity){
-        double im = intensity / sum_intensity * I * cos(k * R_0 / cos_alpha);
+    double calculate_image(double x, double y, double intensity){
+        double im = intensity - 2 * I * (1 + cos(k * R_0 / cos_alpha));
         return im;
+    }
+    void move(double time, double h) {
+        R_0 = time; //update R_0
+    }
+    void do_step(double time, double h, double size){
+        move(time, h);
+        calculate_mesh_intensity(size, h);
     }
 };
 
@@ -295,6 +243,14 @@ int main()
 
     // Пишем её начальное состояние в VTK
     mesh.snapshot(0);
+    int index = 1;
+    for(float step = 800; step < 1000; step+=1) {
+        mesh.do_step(step, h, size);
+        mesh.snapshot(index);
+        index ++;
+        std::cout << step << std::endl;
+    }
+    
 
     return 0;
 }

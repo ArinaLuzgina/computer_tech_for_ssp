@@ -8,8 +8,12 @@
 #include <vtkXMLStructuredGridWriter.h>
 #include <vtkStructuredGrid.h>
 #include <vtkSmartPointer.h>
+
 #include <thread>
+
 using namespace std;
+
+// Разность хода не так считается. Я ее считаю относительно нуля, а надо относительно центра, где объект
 
 // Класс расчётной точки
 class CalcNode
@@ -18,6 +22,7 @@ class CalcNode
 friend class CalcMesh;
 
 protected:
+    // Координаты
     double x;
     double y;
     double z;
@@ -43,7 +48,7 @@ class CalcMesh
 protected:
     // 2D-сетка из расчётных точек
     vector<vector<CalcNode>> points;
-    double R_0 = 850;
+    double R_0 = 0;
     double I = 1.0;
     double lamb = 555 * 1e-9;
     double k = 2 * M_PI / lamb;
@@ -58,13 +63,16 @@ protected:
     unsigned int number_of_points = 100;
     double sum_intensity = 0;
 
+
 public:
     // Конструктор сетки size x size точек с шагом h по пространству
     CalcMesh(unsigned int size, double h) {
         calculate_mesh(size, h);
         calculate_mesh_intensity(size, h);
         calculate_mesh_image(size, h);
+
     }
+
     void calculate_mesh(unsigned int size, double h){
         points.resize(size);
         for(unsigned int i = 0; i < size; i++) {
@@ -123,8 +131,7 @@ public:
                 for(unsigned int j = 0; j < size; j++) {
                     double pointX = i * h;
                     double pointY = j * h;
-                    double intensity = calculate_intensity_1d(pointX - centerX, pointY);
-                    points[i][j].intensity = intensity;
+                    double intensity = calculate_intensity_1d(pointX - centerX, pointY);                    points[i][j].intensity = intensity;
                     intens3 += intensity;
                 }
             }
@@ -215,7 +222,6 @@ public:
         t5.join();
     }
 
-
     // Метод отвечает за запись текущего состояния сетки в снапшот в формате VTK
     void snapshot(unsigned int snap_number) {
         // Сетка в терминах VTK
@@ -252,33 +258,33 @@ public:
         structuredGrid->GetPointData()->AddArray(image);
 
         // Создаём снапшот в файле с заданным именем
-        string fileName = "./output/1d_emitter.vts";
+        //string fileName = "./output/1d_emitter.vts";
+        string fileName = "./output/1d_emitter/step-" + std::to_string(snap_number) + ".vts";
         vtkSmartPointer<vtkXMLStructuredGridWriter> writer = vtkSmartPointer<vtkXMLStructuredGridWriter>::New();
         writer->SetFileName(fileName.c_str());
         writer->SetInputData(structuredGrid);
         writer->Write();
     }
-
-    double calculate_angle(double x, double y, double x_from, double y_from){
-        double r = sqrt(pow((x - x_from), 2) + pow((y - y_from), 2));
-        double psi = atan(r / R_0);
-        return psi;
-    }
     double calculate_intensity_1d(double x, double y){
         double I_res = 0.0;
         for(double i=y_st; i < y_end; i += (y_end - y_st) / number_of_points){
-            //for(double j=x_st; j < x_end; j += (x_end - x_st) / number_of_points){
             double r_sq = pow( x, 2) + pow(i - y, 2);
             double delta = sqrt(r_sq + pow(R_0, 2)) - R_0 / cos_alpha;
             I_res += 2 * I * (1 + cos(k * delta));
         
     }
-        //std::cout << I_res << std::endl;
         return I_res;
     }
     double calculate_image(double intensity){
         double im = intensity / sum_intensity * I * cos(k * R_0 / cos_alpha);
         return im;
+    }
+    void move(double time, double h) {
+        R_0 = time; //update R_0
+    }
+    void do_step(double time, double h, double size){
+        move(time, h);
+        calculate_mesh_intensity(size, h);
     }
 };
 
@@ -295,6 +301,35 @@ int main()
 
     // Пишем её начальное состояние в VTK
     mesh.snapshot(0);
+    int index = 1;
+    for(float step = 0; step < 1; step+=0.01) {
+        mesh.do_step(step, h, size);
+        mesh.snapshot(index);
+        index ++;
+        std::cout << step << std::endl;
+    }
+    for(float step = 1; step < 10; step+= 0.1) {
+        mesh.do_step(step, h, size);
+        mesh.snapshot(index);
+        index ++;
+        std::cout << step << std::endl;
+
+    }
+    for(unsigned int step = 10; step < 100; step+=1) {
+        mesh.do_step(step, h, size);
+        mesh.snapshot(index);
+        index ++;
+        std::cout << step << std::endl;
+
+    }
+    for(unsigned int step = 100; step < 2000; step+=10) {
+        mesh.do_step(step, h, size);
+        mesh.snapshot(index);
+        index ++;
+        std::cout << step << std::endl;
+
+    }
+
 
     return 0;
 }

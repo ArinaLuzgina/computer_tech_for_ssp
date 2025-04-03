@@ -1,0 +1,425 @@
+
+        // double intens1 = 0;
+        // double intens2 = 0;
+        // double intens3 = 0;
+        // double intens4 = 0;
+        // double intens5 = 0;
+        // double intens6 = 0;
+        // double intens7 = 0;
+        // double intens8 = 0;
+        // double intens9 = 0;
+        // double intens10 = 0;
+        // double intens11 = 0;        
+        // double intens12 = 0;        
+        // double intens13 = 0;        
+        // double intens14 = 0;        
+        // double intens15 = 0;        
+        // double intens16 = 0;        
+        // double intens17 = 0;        
+        // double intens18 = 0; 
+
+        // std::thread t2([&](){
+        //     for(unsigned int i = size / 18; i < size/9; i++) {
+        //         points[i].resize(size);
+        //         for(unsigned int j = 0; j < size; j++) {
+        //             // Начальные координаты зададим равномерно в плоскости OXY
+        //             double pointX = i * h;
+        //             double pointY = j * h;
+        //             points[i][j].intensity = calculate_intensity_2d(pointX, pointY);
+        //             intens2 += points[i][j].intensity;                }
+        //     }
+        // });
+        // std::thread t3([&](){
+        //     for(unsigned int i = size / 9; i < size/6; i++) {
+        //         points[i].resize(size);
+        //         for(unsigned int j = 0; j < size; j++) {
+        //             // Начальные координаты зададим равномерно в плоскости OXY
+        //             double pointX = i * h;
+        //             double pointY = j * h;
+        //             points[i][j].intensity = calculate_intensity_2d(pointX, pointY);
+        //             intens1 += points[i][j].intensity;
+        //         }
+        //     }
+        // });
+        // std::thread t4([&](){
+        //     for(unsigned int i = size / 6; i < size /9 * 2; i++) {
+        //         points[i].resize(size);
+        //         for(unsigned int j = 0; j < size; j++) {
+        //             // Начальные координаты зададим равномерно в плоскости OXY
+        //             double pointX = i * h;
+        //             double pointY = j * h;
+        //             points[i][j].intensity = calculate_intensity_2d(pointX, pointY);
+        //             intens4 += points[i][j].intensity; 
+        //         }
+        //     }
+        // });
+        // std::thread t5([&](){
+        //     for(unsigned int i = size / 9 * 2; i < size /18 * 5; i++) {
+        //         points[i].resize(size);
+        //         for(unsigned int j = 0; j < size; j++) {
+        //             // Начальные координаты зададим равномерно в плоскости OXY
+        //             double pointX = i * h;
+        //             double pointY = j * h;
+        //             points[i][j].intensity = calculate_intensity_2d(pointX, pointY);
+        //             intens5 += points[i][j].intensity;
+        //             }
+        //     }
+        // });
+        // std::thread t6([&](){
+        //     for(unsigned int i = size / 18 * 5; i < size /3; i++) {
+        //         points[i].resize(size);
+        //         for(unsigned int j = 0; j < size; j++) {
+        //             // Начальные координаты зададим равномерно в плоскости OXY
+        //             double pointX = i * h;
+        //             double pointY = j * h;
+        //             points[i][j].intensity = calculate_intensity_2d(pointX, pointY);
+        //             intens6 += points[i][j].intensity;
+        //             }
+        //     }
+        // });
+        // std::thread t7([&](){
+        //     for(unsigned int i = size /3; i < size /18 * 7; i++) {
+        //         points[i].resize(size);
+        //         for(unsigned int j = 0; j < size; j++) {
+        //             // Начальные координаты зададим равномерно в плоскости OXY
+        //             double pointX = i * h;
+        //             double pointY = j * h;
+        //             points[i][j].intensity = calculate_intensity_2d(pointX, pointY);
+        //             intens7 += points[i][j].intensity;
+        //             }
+        //     }
+        // });
+        // std::thread t8([&](){
+        //     for(unsigned int i = size / 18 * 7; i < size /9 * 4; i++) {
+        //         points[i].resize(size);
+        //         for(unsigned int j = 0; j < size; j++) {
+        //             // Начальные координаты зададим равномерно в плоскости OXY
+        //             double pointX = i * h;
+        //             double pointY = j * h;
+        //             points[i][j].intensity = calculate_intensity_2d(pointX, pointY);
+        //             intens8 += points[i][j].intensity; 
+        //         }
+        //     }
+        // });
+        // std::thread t9([&](){
+        //     for(unsigned int i = size / 9 * 4; i < size / 2; i++) {
+        //         points[i].resize(size);
+        //         for(unsigned int j = 0; j < size; j++) {
+        //             // Начальные координаты зададим равномерно в плоскости OXY
+        //             double pointX = i * h;
+        //             double pointY = j * h;
+        //             points[i][j].intensity = calculate_intensity_2d(pointX, pointY);
+        //             intens9 += points[i][j].intensity; 
+        //         }
+        //     }
+        // });
+        // std::thread t10([&](){
+        //     for(unsigned int i = size / 2; i < size / 9 * 5; i++) {
+        //         points[i].resize(size);
+        //         for(unsigned int j = 0; j < size; j++) {
+        //             // Начальные координаты зададим равномерно в плоскости OXY
+        //             double pointX = i * h;
+        //             double pointY = j * h;
+        //             points[i][j].intensity = calculate_intensity_2d(pointX, pointY);
+        //             intens10 += points[i][j].intensity; 
+        //         }
+        //     }
+        // });
+        // std::thread t11([&](){
+        //     for(unsigned int i = size / 9 * 5; i < size/18 * 11; i++) {
+        //         points[i].resize(size);
+        //         for(unsigned int j = 0; j < size; j++) {
+        //             // Начальные координаты зададим равномерно в плоскости OXY
+        //             double pointX = i * h;
+        //             double pointY = j * h;
+        //             points[i][j].intensity = calculate_intensity_2d(pointX, pointY);
+        //             intens11 += points[i][j].intensity; 
+        //         }
+        //     }
+        // });
+        // std::thread t12([&](){
+        //     for(unsigned int i = size /18 * 11; i < size/3 * 2; i++) {
+        //         points[i].resize(size);
+        //         for(unsigned int j = 0; j < size; j++) {
+        //             // Начальные координаты зададим равномерно в плоскости OXY
+        //             double pointX = i * h;
+        //             double pointY = j * h;
+        //             points[i][j].intensity = calculate_intensity_2d(pointX, pointY);
+        //             intens12 += points[i][j].intensity; 
+        //         }
+        //     }
+        // });
+        // std::thread t13([&](){
+        //     for(unsigned int i = size / 3 * 2; i < size / 18 * 13; i++) {
+        //         points[i].resize(size);
+        //         for(unsigned int j = 0; j < size; j++) {
+        //             // Начальные координаты зададим равномерно в плоскости OXY
+        //             double pointX = i * h;
+        //             double pointY = j * h;
+        //             points[i][j].intensity = calculate_intensity_2d(pointX, pointY);
+        //             intens13 += points[i][j].intensity; 
+        //         }
+        //     }
+        // });
+        // std::thread t14([&](){
+        //     for(unsigned int i = size / 18 * 13; i < size / 9 * 7; i++) {
+        //         points[i].resize(size);
+        //         for(unsigned int j = 0; j < size; j++) {
+        //             // Начальные координаты зададим равномерно в плоскости OXY
+        //             double pointX = i * h;
+        //             double pointY = j * h;
+        //             points[i][j].intensity = calculate_intensity_2d(pointX, pointY);
+        //             intens14 += points[i][j].intensity; 
+        //         }
+        //     }
+        // });
+        // std::thread t15([&](){
+        //     for(unsigned int i = size / 9 * 7; i < size / 6 * 5; i++) {
+        //         points[i].resize(size);
+        //         for(unsigned int j = 0; j < size; j++) {
+        //             // Начальные координаты зададим равномерно в плоскости OXY
+        //             double pointX = i * h;
+        //             double pointY = j * h;
+        //             points[i][j].intensity = calculate_intensity_2d(pointX, pointY);
+        //             intens15 += points[i][j].intensity; 
+        //         }
+        //     }
+        // });
+        // std::thread t16([&](){
+        //     for(unsigned int i = size / 6 * 5; i < size / 9 * 8; i++) {
+        //         points[i].resize(size);
+        //         for(unsigned int j = 0; j < size; j++) {
+        //             // Начальные координаты зададим равномерно в плоскости OXY
+        //             double pointX = i * h;
+        //             double pointY = j * h;
+        //             points[i][j].intensity = calculate_intensity_2d(pointX, pointY);
+        //             intens16 += points[i][j].intensity; 
+        //         }
+        //     }
+        // });
+        // std::thread t17([&](){
+        //     for(unsigned int i = size / 9 * 8; i < size / 18 * 17; i++) {
+        //         points[i].resize(size);
+        //         for(unsigned int j = 0; j < size; j++) {
+        //             // Начальные координаты зададим равномерно в плоскости OXY
+        //             double pointX = i * h;
+        //             double pointY = j * h;
+        //             points[i][j].intensity = calculate_intensity_2d(pointX, pointY);
+        //             intens17 += points[i][j].intensity; 
+        //         }
+        //     }
+        // });
+        // std::thread t18([&](){
+        //     for(unsigned int i = size / 18 * 17; i < size; i++) {
+        //         points[i].resize(size);
+        //         for(unsigned int j = 0; j < size; j++) {
+        //             // Начальные координаты зададим равномерно в плоскости OXY
+        //             double pointX = i * h;
+        //             double pointY = j * h;
+        //             points[i][j].intensity = calculate_intensity_2d(pointX, pointY);
+        //             intens18 += points[i][j].intensity; 
+        //         }
+        //     }
+        // });
+        t1.join();
+        t2.join();
+        t3.join();
+        t4.join();
+        t5.join();
+        t6.join();
+        t7.join();
+        t8.join();
+        t9.join();
+        t10.join(); 
+        t11.join(); 
+        t12.join(); 
+        t13.join(); 
+        t14.join(); 
+        t15.join(); 
+        t16.join(); 
+        t17.join(); 
+        t18.join(); 
+
+        // sum_intensity += intens1;
+        // sum_intensity += intens2;
+        // sum_intensity += intens3;
+        // sum_intensity += intens4;
+        // sum_intensity += intens5;
+        // sum_intensity += intens6;
+        // sum_intensity += intens7;
+        // sum_intensity += intens8;
+        // sum_intensity += intens9;
+        // sum_intensity += intens10; 
+        // sum_intensity += intens11;      
+        // sum_intensity += intens12;      
+        // sum_intensity += intens13;      
+        // sum_intensity += intens14;      
+        // sum_intensity += intens15;      
+        // sum_intensity += intens16;      
+        // sum_intensity += intens17;      
+        // sum_intensity += intens18;    
+
+
+
+std::thread t1([&](){
+            for(unsigned int i = 0; i < size / 18; i++) {
+                points[i].resize(size);
+                for(unsigned int j = 0; j < size; j++) {
+                    points[i][j].image = calculate_image(points[i][j].intensity);
+                }
+            }
+        });
+        std::thread t2([&](){
+            for(unsigned int i = size / 18; i < size/9; i++) {
+                points[i].resize(size);
+                for(unsigned int j = 0; j < size; j++) {
+                    points[i][j].image = calculate_image(points[i][j].intensity);
+                }
+            }
+        });
+        std::thread t3([&](){
+            for(unsigned int i = size / 9; i < size/6; i++) {
+                points[i].resize(size);
+                for(unsigned int j = 0; j < size; j++) {
+                    points[i][j].image = calculate_image(points[i][j].intensity);
+                }
+            }
+        });
+        std::thread t4([&](){
+            for(unsigned int i = size / 6; i < size /9 * 2; i++) {
+                points[i].resize(size);
+                for(unsigned int j = 0; j < size; j++) {
+                    points[i][j].image = calculate_image(points[i][j].intensity);
+                }
+            }
+        });
+        std::thread t5([&](){
+            for(unsigned int i = size / 9 * 2; i < size /18 * 5; i++) {
+                points[i].resize(size);
+                for(unsigned int j = 0; j < size; j++) {
+                    points[i][j].image = calculate_image(points[i][j].intensity);
+                }
+            }
+        });
+        std::thread t6([&](){
+            for(unsigned int i = size / 18 * 5; i < size /3; i++) {
+                points[i].resize(size);
+                for(unsigned int j = 0; j < size; j++) {
+                    points[i][j].image = calculate_image(points[i][j].intensity);
+                }
+            }
+        });
+        std::thread t7([&](){
+            for(unsigned int i = size /3; i < size /18 * 7; i++) {
+                points[i].resize(size);
+                for(unsigned int j = 0; j < size; j++) {
+                    points[i][j].image = calculate_image(points[i][j].intensity);
+                    }
+            }
+        });
+        std::thread t8([&](){
+            for(unsigned int i = size / 18 * 7; i < size /9 * 4; i++) {
+                points[i].resize(size);
+                for(unsigned int j = 0; j < size; j++) {
+                    points[i][j].image = calculate_image(points[i][j].intensity); 
+                }
+            }
+        });
+        std::thread t9([&](){
+            for(unsigned int i = size / 9 * 4; i < size / 2; i++) {
+                points[i].resize(size);
+                for(unsigned int j = 0; j < size; j++) {
+                    points[i][j].image = calculate_image(points[i][j].intensity); 
+                }
+            }
+        });
+        std::thread t10([&](){
+            for(unsigned int i = size / 2; i < size / 9 * 5; i++) {
+                points[i].resize(size);
+                for(unsigned int j = 0; j < size; j++) {
+                    points[i][j].image = calculate_image(points[i][j].intensity); 
+                }
+            }
+        });
+        std::thread t11([&](){
+            for(unsigned int i = size / 9 * 5; i < size/18 * 11; i++) {
+                points[i].resize(size);
+                for(unsigned int j = 0; j < size; j++) {
+                    points[i][j].image = calculate_image(points[i][j].intensity);
+                }
+            }
+        });
+        std::thread t12([&](){
+            for(unsigned int i = size /18 * 11; i < size/3 * 2; i++) {
+                points[i].resize(size);
+                for(unsigned int j = 0; j < size; j++) {
+                    points[i][j].image = calculate_image(points[i][j].intensity); 
+                }
+            }
+        });
+        std::thread t13([&](){
+            for(unsigned int i = size / 3 * 2; i < size / 18 * 13; i++) {
+                points[i].resize(size);
+                for(unsigned int j = 0; j < size; j++) {
+                    points[i][j].image = calculate_image(points[i][j].intensity); 
+                }
+            }
+        });
+        std::thread t14([&](){
+            for(unsigned int i = size / 18 * 13; i < size / 9 * 7; i++) {
+                points[i].resize(size);
+                for(unsigned int j = 0; j < size; j++) {
+                    points[i][j].image = calculate_image(points[i][j].intensity); 
+                }
+            }
+        });
+        std::thread t15([&](){
+            for(unsigned int i = size / 9 * 7; i < size / 6 * 5; i++) {
+                points[i].resize(size);
+                for(unsigned int j = 0; j < size; j++) {
+                    points[i][j].image = calculate_image(points[i][j].intensity);
+                }
+            }
+        });
+        std::thread t16([&](){
+            for(unsigned int i = size / 6 * 5; i < size / 9 * 8; i++) {
+                points[i].resize(size);
+                for(unsigned int j = 0; j < size; j++) {
+                    points[i][j].image = calculate_image(points[i][j].intensity); 
+                }
+            }
+        });
+        std::thread t17([&](){
+            for(unsigned int i = size / 9 * 8; i < size / 18 * 17; i++) {
+                points[i].resize(size);
+                for(unsigned int j = 0; j < size; j++) {
+                    points[i][j].image = calculate_image(points[i][j].intensity); 
+                }
+            }
+        });
+        std::thread t18([&](){
+            for(unsigned int i = size / 18 * 17; i < size; i++) {
+                points[i].resize(size);
+                for(unsigned int j = 0; j < size; j++) {
+                    points[i][j].image = calculate_image(points[i][j].intensity); 
+                }
+            }
+        });
+        t1.join();
+        t2.join();
+        t3.join();
+        t4.join();
+        t5.join();
+        t6.join();
+        t7.join();
+        t8.join();
+        t9.join();
+        t10.join(); 
+        t11.join(); 
+        t12.join(); 
+        t13.join(); 
+        t14.join(); 
+        t15.join(); 
+        t16.join(); 
+        t17.join(); 
+        t18.join(); 

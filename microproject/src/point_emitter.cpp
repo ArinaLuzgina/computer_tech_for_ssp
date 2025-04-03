@@ -77,7 +77,7 @@ public:
                 // Модельная скалярная величина распределена как-то вот так 
                 double r_sq = pow((pointX - centerX), 2) + pow(pointY - centerY, 2);
                 double intensity = 2 * I * (1 + cos(k * r_sq / (2 * R0)));
-                double image = intensity - 2 * I * (1 + cos(k * R0));
+                double image = intensity * I * cos(k*R0);
 
                 // Профиль скорости по Z тоже взят какой-нибудь с потолка
 
