@@ -55,13 +55,13 @@ protected:
     double k = 2 * M_PI / lamb;
     double alpha = 0 / 180 * M_PI;
     double cos_alpha = cos(alpha);
-    double width = 100;
-    double lenght = 100;
+    double width = 25.2;//50.4;//100;//76.67; //100;
+    double lenght = 25.2;//50.4; // 100;//76.67; //100;
     double x_st;
     double x_end;
     double y_st;
     double y_end;
-    unsigned int number_of_points = 150;
+    unsigned int number_of_points = 100;
     double sum_intensity = 0;
 
 public:
@@ -401,7 +401,7 @@ public:
         structuredGrid->GetPointData()->AddArray(image);
 
         // Создаём снапшот в файле с заданным именем
-        string fileName = "./output/2d_emitter_sq/step-" + std::to_string(snap_number) + ".vts";
+        string fileName = "./output/2d_emitter_s504h4_56_25/step-" + std::to_string(snap_number) + ".vts";
         vtkSmartPointer<vtkXMLStructuredGridWriter> writer = vtkSmartPointer<vtkXMLStructuredGridWriter>::New();
         writer->SetFileName(fileName.c_str());
         writer->SetInputData(structuredGrid);
@@ -436,8 +436,10 @@ public:
 
 int main()
 {
-    unsigned int size = 1530;
-    double h = 1.5e-6;
+    // unsigned int size = 1530;
+    // double h = 1.5e-6;
+    unsigned int size = 504;
+    double h = 4.56e-6;
 
     // Создаём сетку заданного размера
     CalcMesh mesh(size, h);
@@ -457,27 +459,27 @@ int main()
         std::cout << step << std::endl;
 
     }
-    for(unsigned int step = 10; step < 100; step+=1) {
+    for(unsigned int step = 10; step < 100; step+=10) {
         mesh.do_step(step, h, size);
         mesh.snapshot(index);
         index ++;
         std::cout << step << std::endl;
 
     }
-    for(unsigned int step = 100; step < 500; step+=10) {
+    for(unsigned int step = 100; step <= 1000; step+=100) {
         mesh.do_step(step, h, size);
         mesh.snapshot(index);
         index ++;
         std::cout << step << std::endl;
 
     }
-    for(unsigned int step = 500; step < 1000; step+=5) {
-        mesh.do_step(step, h, size);
-        mesh.snapshot(index);
-        index ++;
-        std::cout << step << std::endl;
+    // for(unsigned int step = 500; step < 1000; step+=5) {
+    //     mesh.do_step(step, h, size);
+    //     mesh.snapshot(index);
+    //     index ++;
+    //     std::cout << step << std::endl;
 
-    }
+    // }
 
 
     return 0;

@@ -55,8 +55,8 @@ protected:
     double k = 2 * M_PI / lamb;
     double alpha = 0 / 180 * M_PI;
     double cos_alpha = cos(alpha);
-    std::vector<std::vector<double>> choords = {{450, 450, -R_0}, {451, 550, -R_0}, {550, 551, -R_0-100}};
-    unsigned int number_of_points = 60;
+    std::vector<std::vector<double>> choords = {{500, 450, -R_0}, {501, 550, -R_0}, {600, 450, -R_0 - 100}};
+    unsigned int number_of_points = 100;
     double sum_intensity = 0;
     std::mutex mtx;
 
@@ -68,6 +68,9 @@ public:
 
         calculate_mesh_intensity(size, h);
         //calculate_mesh_image(size, h);
+        choords = {{400, 450, -R_0 - 100}, {401, 550, -R_0 - 100}, {500, 450, -R_0}};
+        calculate_mesh_intensity(size, h);
+
     }
     void calculate_mesh(unsigned int size, double h){
         points.resize(size);
@@ -94,7 +97,7 @@ public:
                 for(unsigned int j = 0; j < size; j++) {
                     double pointX = i * h;
                     double pointY = j * h;
-                    points[i][j].intensity = calculate_intensity_3d(pointX, pointY, starting_points, points_n, R);
+                    points[i][j].intensity += calculate_intensity_3d(pointX, pointY, starting_points, points_n, R);
             }
         }
         });
@@ -111,7 +114,7 @@ public:
                 for(unsigned int j = 0; j < size; j++) {
                     double pointX = i * h;
                     double pointY = j * h;
-                    points[i][j].intensity = calculate_intensity_3d(pointX, pointY, starting_points, points_n, R);
+                    points[i][j].intensity += calculate_intensity_3d(pointX, pointY, starting_points, points_n, R);
                 }
             }
         });
@@ -128,7 +131,7 @@ public:
                 for(unsigned int j = 0; j < size; j++) {
                     double pointX = i * h;
                     double pointY = j * h;
-                    points[i][j].intensity = calculate_intensity_3d(pointX, pointY, starting_points, points_n, R);
+                    points[i][j].intensity += calculate_intensity_3d(pointX, pointY, starting_points, points_n, R);
             }
         }
         });
@@ -146,7 +149,7 @@ public:
                 for(unsigned int j = 0; j < size; j++) {
                     double pointX = i * h;
                     double pointY = j * h;
-                    points[i][j].intensity = calculate_intensity_3d(pointX, pointY, starting_points, points_n, R);
+                    points[i][j].intensity += calculate_intensity_3d(pointX, pointY, starting_points, points_n, R);
             }
         }
         });
@@ -159,12 +162,12 @@ public:
 
             mtx.unlock();
             for(size_t p = 0; p != 3; p++){for(size_t s = 0; s != 3; s++){starting_points[p][s] *= h;}}
-            for(unsigned int i = size / 9 * 4; i < size/18 * 5; i++) {
+            for(unsigned int i = size / 9 * 2; i < size/18 * 5; i++) {
                 points[i].resize(size);
                 for(unsigned int j = 0; j < size; j++) {
                     double pointX = i * h;
                     double pointY = j * h;
-                    points[i][j].intensity = calculate_intensity_3d(pointX, pointY, starting_points, points_n, R);
+                    points[i][j].intensity += calculate_intensity_3d(pointX, pointY, starting_points, points_n, R);
             }
         }
         });
@@ -182,7 +185,7 @@ public:
                 for(unsigned int j = 0; j < size; j++) {
                     double pointX = i * h;
                     double pointY = j * h;
-                    points[i][j].intensity = calculate_intensity_3d(pointX, pointY, starting_points, points_n, R);
+                    points[i][j].intensity += calculate_intensity_3d(pointX, pointY, starting_points, points_n, R);
             }
         }
         });
@@ -200,7 +203,7 @@ public:
                 for(unsigned int j = 0; j < size; j++) {
                     double pointX = i * h;
                     double pointY = j * h;
-                    points[i][j].intensity = calculate_intensity_3d(pointX, pointY, starting_points, points_n, R);
+                    points[i][j].intensity += calculate_intensity_3d(pointX, pointY, starting_points, points_n, R);
             }
         }
         });
@@ -218,7 +221,7 @@ public:
                 for(unsigned int j = 0; j < size; j++) {
                     double pointX = i * h;
                     double pointY = j * h;
-                    points[i][j].intensity = calculate_intensity_3d(pointX, pointY, starting_points, points_n, R);
+                    points[i][j].intensity += calculate_intensity_3d(pointX, pointY, starting_points, points_n, R);
             }
         }
         });
@@ -236,7 +239,7 @@ public:
                 for(unsigned int j = 0; j < size; j++) {
                     double pointX = i * h;
                     double pointY = j * h;
-                    points[i][j].intensity = calculate_intensity_3d(pointX, pointY, starting_points, points_n, R);
+                    points[i][j].intensity += calculate_intensity_3d(pointX, pointY, starting_points, points_n, R);
             }
         }
         });
@@ -252,7 +255,7 @@ public:
                 for(unsigned int j = 0; j < size; j++) {
                     double pointX = i * h;
                     double pointY = j * h;
-                    points[i][j].intensity = calculate_intensity_3d(pointX, pointY, starting_points, points_n, R);
+                    points[i][j].intensity += calculate_intensity_3d(pointX, pointY, starting_points, points_n, R);
             }
         }
         });
@@ -268,7 +271,7 @@ public:
                 for(unsigned int j = 0; j < size; j++) {
                     double pointX = i * h;
                     double pointY = j * h;
-                    points[i][j].intensity = calculate_intensity_3d(pointX, pointY, starting_points, points_n, R);
+                    points[i][j].intensity += calculate_intensity_3d(pointX, pointY, starting_points, points_n, R);
             }
         }
         });
@@ -284,7 +287,7 @@ public:
                 for(unsigned int j = 0; j < size; j++) {
                     double pointX = i * h;
                     double pointY = j * h;
-                    points[i][j].intensity = calculate_intensity_3d(pointX, pointY, starting_points, points_n, R);
+                    points[i][j].intensity += calculate_intensity_3d(pointX, pointY, starting_points, points_n, R);
             }
         }
         });
@@ -300,7 +303,7 @@ public:
                 for(unsigned int j = 0; j < size; j++) {
                     double pointX = i * h;
                     double pointY = j * h;
-                    points[i][j].intensity = calculate_intensity_3d(pointX, pointY, starting_points, points_n, R);
+                    points[i][j].intensity += calculate_intensity_3d(pointX, pointY, starting_points, points_n, R);
             }
         }
         });
@@ -316,7 +319,7 @@ public:
                 for(unsigned int j = 0; j < size; j++) {
                     double pointX = i * h;
                     double pointY = j * h;
-                    points[i][j].intensity = calculate_intensity_3d(pointX, pointY, starting_points, points_n, R);
+                    points[i][j].intensity += calculate_intensity_3d(pointX, pointY, starting_points, points_n, R);
             }
         }
         });
@@ -332,7 +335,7 @@ public:
                 for(unsigned int j = 0; j < size; j++) {
                     double pointX = i * h;
                     double pointY = j * h;
-                    points[i][j].intensity = calculate_intensity_3d(pointX, pointY, starting_points, points_n, R);
+                    points[i][j].intensity += calculate_intensity_3d(pointX, pointY, starting_points, points_n, R);
             }
         }
         });
@@ -348,7 +351,7 @@ public:
                 for(unsigned int j = 0; j < size; j++) {
                     double pointX = i * h;
                     double pointY = j * h;
-                    points[i][j].intensity = calculate_intensity_3d(pointX, pointY, starting_points, points_n, R);
+                    points[i][j].intensity += calculate_intensity_3d(pointX, pointY, starting_points, points_n, R);
             }
         }
         });
@@ -364,7 +367,7 @@ public:
                 for(unsigned int j = 0; j < size; j++) {
                     double pointX = i * h;
                     double pointY = j * h;
-                    points[i][j].intensity = calculate_intensity_3d(pointX, pointY, starting_points, points_n, R);
+                    points[i][j].intensity += calculate_intensity_3d(pointX, pointY, starting_points, points_n, R);
             }
         }
         });
@@ -380,7 +383,7 @@ public:
                 for(unsigned int j = 0; j < size; j++) {
                     double pointX = i * h;
                     double pointY = j * h;
-                    points[i][j].intensity = calculate_intensity_3d(pointX, pointY, starting_points, points_n, R);
+                    points[i][j].intensity += calculate_intensity_3d(pointX, pointY, starting_points, points_n, R);
             }
         }
         });
@@ -493,7 +496,7 @@ public:
         structuredGrid->GetPointData()->AddArray(image);
 
         // Создаём снапшот в файле с заданным именем
-        string fileName = "./output/2d_em_in3d" + std::to_string(snap_number) + ".vts";
+        string fileName = "./output/2d_em_in3d_upgrade/step-" + std::to_string(snap_number) + ".vts";
         vtkSmartPointer<vtkXMLStructuredGridWriter> writer = vtkSmartPointer<vtkXMLStructuredGridWriter>::New();
         writer->SetFileName(fileName.c_str());
         writer->SetInputData(structuredGrid);
@@ -501,22 +504,22 @@ public:
     }
 
 
-    double calculate_intensity_3d(double x, double y, std::vector<std::vector<double>> starting_points, int number_of_points, double R_0){
+    double calculate_intensity_3d(double x, double y, std::vector<std::vector<double>> starting_points, int points_n, double R_0){
         double I_res = 0.0;
         k = 2 * M_PI / (555 * 1e-9);
         //std::cout(starting_points[1][0] - starting_points[0][0]) / number_of_points << std::endl;
-        for(double i=starting_points[0][0]; i <= starting_points[1][0]; i += (starting_points[1][0] - starting_points[0][0]) / number_of_points){
-            for(double j=starting_points[0][0]; j <= starting_points[2][0]; j += (starting_points[2][0] - starting_points[0][0]) / number_of_points){
+        for(double i=starting_points[0][0]; i <= starting_points[1][0]; i += (starting_points[1][0] - starting_points[0][0]) / points_n){
+            for(double j=starting_points[0][0]; j <= starting_points[2][0]; j += (starting_points[2][0] - starting_points[0][0]) / points_n){
                 double y_l = (starting_points[0][1] * (i - starting_points[1][0]) - starting_points[1][1] * (i - starting_points[0][0])) / (starting_points[0][0] - starting_points[1][0]);
                 double y_r = (starting_points[0][1] * (j - starting_points[2][0]) - starting_points[2][1] * (j - starting_points[0][0])) / (starting_points[0][0] - starting_points[2][0]);
                 double z_l = (starting_points[0][2] * (i - starting_points[1][0]) - starting_points[1][2] * (i - starting_points[0][0])) / (starting_points[0][0] - starting_points[1][0]);
                 double z_r = (starting_points[0][2] * (j - starting_points[2][0]) - starting_points[2][2] * (j - starting_points[0][0])) / (starting_points[0][0] - starting_points[2][0]);
                 double r_sq = pow(i + j - starting_points[0][0] - x, 2) + pow(y_l + y_r - starting_points[0][1] - y, 2) + pow(z_l + z_r - starting_points[0][2], 2);
-                double delta = sqrt(r_sq) - R_0 / cos_alpha;
+                double delta = sqrt(r_sq) - R_0 / 1;
                 I_res += 2 * I * (1 + cos(k * delta));
-                mtx.lock();
-                std::cout << i << " " << y_l + y_r - starting_points[0][1] << " " << y << std::endl;
-                mtx.unlock();
+                // mtx.lock();
+                // std::cout << i << " " << y_l + y_r - starting_points[0][1] << " " << y << std::endl;
+                // mtx.unlock();
             }
 
         }
@@ -526,12 +529,29 @@ public:
         double im = intensity / sum_intensity * I * cos(k * R_0 / cos_alpha);
         return im;
     }
+    void zero_intense(unsigned int size, double h){
+        points.resize(size);
+        for(unsigned int i = 0; i < size; i++) {
+            points[i].resize(size);
+            for(unsigned int j = 0; j < size; j++) {
+                points[i][j].intensity = 0.0;
+            }
+        }
+    }
     void move(double time, double h) {
         R_0 = time; //update R_0
+        choords[0][2] = -R_0;
+        choords[1][2] = -R_0;
+        choords[2][2] = -R_0 - 100;
         sum_intensity = 0;
+        
     }
     void do_step(double time, double h, double size){
         move(time, h);
+        zero_intense(size, h);
+        choords = {{500, 450, -R_0}, {501, 550, -R_0}, {600, 450, -R_0 - 100}};
+        calculate_mesh_intensity(size, h);
+        choords = {{400, 450, -R_0 - 100}, {401, 550, -R_0 - 100}, {500, 450, -R_0}};
         calculate_mesh_intensity(size, h);
         //calculate_mesh_image(size, h);
     }
@@ -540,45 +560,45 @@ public:
 int main()
 {
     unsigned int size = 1008;
-    double h = 1.5e-6;
+    double h = 1e-6;
 
     // Создаём сетку заданного размера
     CalcMesh mesh(size, h);
 
     mesh.snapshot(0);
     int index = 1;
-    // for(float step = 0; step < 1; step+=0.1) {
+    for(float step = 0.1; step < 1; step+=0.1) {
+        mesh.do_step(step, h, size);
+        mesh.snapshot(index);
+        index ++;
+        std::cout<<step << std::endl;
+    }
+    for(float step = 1; step < 10; step+= 1) {
+        mesh.do_step(step, h, size);
+        mesh.snapshot(index);
+        index ++;
+        std::cout<<step << std::endl;
+
+    }
+    for(unsigned int step = 10; step < 2000; step+=10) {
+        mesh.do_step(step, h, size);
+        mesh.snapshot(index);
+        index ++;
+        std::cout<<step << std::endl;
+
+    }
+    // for(unsigned int step = 100; step < 500; step+=100) {
     //     mesh.do_step(step, h, size);
     //     mesh.snapshot(index);
     //     index ++;
-    //     //std::coutstep << std::endl;
-    // }
-    // for(float step = 1; step < 10; step+= 1) {
-    //     mesh.do_step(step, h, size);
-    //     mesh.snapshot(index);
-    //     index ++;
-    //     //std::coutstep << std::endl;
+    //     std::cout<<step << std::endl;
 
     // }
-    // for(unsigned int step = 10; step < 100; step+=1) {
+    // for(unsigned int step = 100; step < 1000; step+=10) {
     //     mesh.do_step(step, h, size);
     //     mesh.snapshot(index);
     //     index ++;
-    //     //std::coutstep << std::endl;
-
-    // }
-    // for(unsigned int step = 100; step < 500; step+=10) {
-    //     mesh.do_step(step, h, size);
-    //     mesh.snapshot(index);
-    //     index ++;
-    //     //std::coutstep << std::endl;
-
-    // }
-    // for(unsigned int step = 500; step < 1000; step+=5) {
-    //     mesh.do_step(step, h, size);
-    //     mesh.snapshot(index);
-    //     index ++;
-    //     //std::coutstep << std::endl;
+    //     std::cout << step << std::endl;
 
     // }
 
